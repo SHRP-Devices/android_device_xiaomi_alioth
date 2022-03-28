@@ -6,7 +6,7 @@ on:
         description: 'set this to true if you wanna push to sf (all small)'
         required: true
 env:
-  MANIFEST: ""
+  MANIFEST: "git://github.com/SHRP/manifest.git -b v3_11.0"
   # Recovery Manifest URL with -b branch
   DT_LINK: "https://github.com/SHRP-Devices/android_device_xiaomi_alioth"
   # Your Device Tree Link
