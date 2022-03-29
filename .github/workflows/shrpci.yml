@@ -8,7 +8,7 @@ on:
 env:
   MANIFEST: "git://github.com/SHRP/manifest.git -b v3_11.0"
   # Recovery Manifest URL with -b branch
-  DT_LINK: "https://github.com/SHRP-Devices/android_device_xiaomi_alioth"
+  DT_LINK: "https://github.com/SHRP-Devices/android_device_xiaomi_alioth -b prebuilt-kernel"
   # Your Device Tree Link
   VENDOR: "xiaomi"
   # Your Device's Vendor name as in used inside DT. Example: xiaomi, samsung, asus, etc.
