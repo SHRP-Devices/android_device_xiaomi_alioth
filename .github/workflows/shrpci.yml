@@ -8,7 +8,7 @@ on:
 env:
   MANIFEST: "https://github.com/SHRP/manifest.git -b v3_11.0"
   # Recovery Manifest URL with -b branch
-  DT_LINK: "https://github.com/SHRP-Devices/android_device_xiaomi_alioth -b prebuilt-kernel"
+  DT_LINK: "https://github.com/SHRP-Devices/android_device_xiaomi_alioth"
   # Your Device Tree Link
   VENDOR: "xiaomi"
   # Your Device's Vendor name as in used inside DT. Example: xiaomi, samsung, asus, etc.
@@ -16,7 +16,7 @@ env:
   # Your Device's Codename as in used inside DT." Example: nikel, phoenix, ginkgo, etc.
   KERNEL_LINK: "https://github.com/SHRP-Devices/android_kernel_xiaomi_alioth"
   # Kernel repo link with optional -b branch. Only for building kernel from source. Ignore if using prebuilt.
-  TARGET: "recoveryimage"
+  TARGET: "adbd bootimage"
   # Set as recoveryimage (or bootimage if no recovery partition avaiable)
   FLAVOR: "eng"
   # eng by default, change the variable if you want userdebug
@@ -85,3 +85,10 @@ jobs:
               else
                  printf "skipping sf pushing"
               fi
+
+       - name: Upload SHRP zip to github
+         uses: actions/upload-artifact@v3
+         with:
+              name: SHRP Recovery
+              path: ${BuildPath}/out/target/product/${CODENAME}/*stable*.zip
+       
