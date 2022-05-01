@@ -1,7 +1,7 @@
-# android_device_xiaomi_alioth-ofox
-For building OFRP for Xiaomi Mi 11X / Redmi K40 / POCO F3
+# android_device_xiaomi_alioth
+For building SHRP for Xiaomi Mi 11X / Redmi K40 / POCO F3
 
-OrangeFox device tree for Xiaomi Mi 11X / Redmi K40 / POCO F3
+SHRP device tree for Xiaomi Mi 11X / Redmi K40 / POCO F3
 
 The Xiaomi Mi 11X (codenamed _"aliothin"_) and Redmi K40 / POCO F3 (codenamed _"alioth"_) are mid range smartphones from Xiaomi.
 
@@ -39,15 +39,36 @@ Mi 11X / Redmi K40 / POCO F3 is using Virtual A/B Partition Scheme!
 
 ## Compile
 
-You can find a full compile guide for OrangeFox [Here](https://wiki.orangefox.tech/en/dev/building)
+First checkout SHRP with aosp tree:
 
-Lunch command :
 ```
-lunch twrp-alioth_eng && mka adbd bootimage
+repo init -u git://github.com/SHRP/manifest.git -b v3_10.0
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 ```
 
+Use ccache
+```
+#Enable ccache
+export USE_CCACHE=1
+export CCACHE_EXEC=$(which ccache)
+```
 
+Finally execute these:
 
-## Credits
+```
+export ALLOW_MISSING_DEPENDENCIES=true
+. build/envsetup.sh
+lunch twrp_alioth-eng
+mka adbd bootimage
+```
+
+To test it:
+
+```
+fastboot boot out/target/product/alioth/boot.img
+```
+
+## Thanks
 - [Original Tree By Nebrassy](https://github.com/TeamWin/android_device_xiaomi_alioth)
 - [ArrowOS kernel](https://github.com/ArrowOS-Devices/android_kernel_xiaomi_alioth)
+#
